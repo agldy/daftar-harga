@@ -25,9 +25,9 @@
     </style>
     <title>Daftar Produk</title>
   </head>
-  <body class="h-screen flex justify-center items-center">
+  <body class="h-screen flex justify-center items-center w-screen">
     <div
-      class="bg-gray-50 p-4 rounded-lg shadow-lg flex flex-col space-y-8 max-w-xl"
+      class="bg-gray-50 p-4 rounded-lg shadow-lg flex flex-col space-y-8 max-w-xl w-full m-2"
     >
       <div class="flex flex-col space-y-2">
         <h1 class="text-3xl text-center text-gray-800">
@@ -40,11 +40,10 @@
       </div>
       <table
         id="product-table"
-        class="table-auto w-full max-w-lg mx-auto table table-zebra"
+        class="table-auto w-full mx-auto table table-zebra"
       >
         <thead>
           <tr>
-            <th></th>
             <th>Nama</th>
             <th>Harga</th>
             <th>Kategori</th>
@@ -112,9 +111,7 @@
           categoryBadge = `<div class="badge badge-primary">${product.category}</div>`;
         }
 
-        return `<tr>    <td>${index + 1}</td><td>${
-          product.name
-        }</td><td>${formatPrice(
+        return `<tr>   <td>${product.name}</td><td>${formatPrice(
           product.price
         )}</td><td>${categoryBadge}</td></tr>`;
       });
