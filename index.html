@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-image: url("https://images.template.net/108716/food-blog-background-m1w5n.jpg");
+        background-size: cover;
+      }
+    </style>
+    <title>Daftar Produk</title>
+  </head>
+  <body class="h-screen flex justify-center items-center">
+    <div
+      class="bg-gray-50 p-4 rounded-lg shadow-lg flex flex-col space-y-8 max-w-xl"
+    >
+      <div class="flex flex-col space-y-2">
+        <h1 class="text-3xl text-center text-gray-800">
+          Nasi Goreng Pak Slamet
+        </h1>
+        <p class="text-center text-gray-600">
+          Nasi Goreng Pak Slamet adalah restoran yang menyajikan nasi goreng
+          dengan rasa yang enak dan kualitas yang aman.
+        </p>
+      </div>
+      <table
+        id="product-table"
+        class="table-auto w-full max-w-lg mx-auto table table-zebra"
+      >
+        <thead>
+          <tr>
+            <th></th>
+            <th>Nama</th>
+            <th>Harga</th>
+            <th>Kategori</th>
+          </tr>
+        </thead>
+        <tbody id="product-table-body"></tbody>
+      </table>
+    </div>
+  </body>
+
+  <script>
+    const products = [
+      {
+        name: "Nasi Goreng Biasa",
+        category: "Makanan",
+        price: 10000,
+      },
+      {
+        name: "Nasi Goreng Komplit",
+        category: "Makanan",
+        price: 15000,
+      },
+      {
+        name: "Nasi Goreng Kambing",
+        category: "Makanan",
+        price: 20000,
+      },
+      {
+        name: "Bakwan",
+        category: "Makanan",
+        price: 1000,
+      },
+      {
+        name: "Es Teh",
+        category: "Minuman",
+        price: 5000,
+      },
+      {
+        name: "Es Jeruk",
+        category: "Minuman",
+        price: 5000,
+      },
+      {
+        name: "Es Kelapa",
+        category: "Minuman",
+        price: 5000,
+      },
+    ];
+
+    const formatPrice = (price) => {
+      return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+      }).format(price);
+    };
+
+    const renderData = () => {
+      const productTable = document.getElementById("product-table-body");
+      productTable.innerHTML = "";
+      const productsHTML = products.map((product, index) => {
+        let categoryBadge;
+        if (product.category === "Makanan") {
+          categoryBadge = `<div class="badge badge-accent">${product.category}</div>`;
+        } else if (product.category === "Minuman") {
+          categoryBadge = `<div class="badge badge-primary">${product.category}</div>`;
+        }
+
+        return `<tr>    <td>${index + 1}</td><td>${
+          product.name
+        }</td><td>${formatPrice(
+          product.price
+        )}</td><td>${categoryBadge}</td></tr>`;
+      });
+      productTable.innerHTML = productsHTML.join("");
+    };
+
+    renderData();
+  </script>
+</html>
